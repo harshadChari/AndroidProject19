@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_public"
+        android:icon="@android:drawable/btn_star_big_on"
+        android:title="Public" />
+
+    <item
+        android:id="@+id/nav_store"
+        android:icon="@android:drawable/btn_star_big_on"
+        android:title="My Store" />
+</menu>

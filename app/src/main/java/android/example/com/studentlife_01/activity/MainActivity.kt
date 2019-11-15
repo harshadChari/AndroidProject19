@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var txtName: TextView
     private lateinit var txtEmail: TextView
     private lateinit var btnLogout: Button
+    private lateinit var btnNotices: Button
+
 
     private var session: SessionManager? = null
     private var db: SQLiteHandler? = null
@@ -23,9 +25,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
+//
+
         txtName =findViewById(R.id.name)
         txtEmail = findViewById(R.id.email)
         btnLogout =  findViewById(R.id.btnLogout)
+        btnNotices =  findViewById(R.id.btnNotices)
+
 
         // Session manager
         session = SessionManager(applicationContext)
@@ -48,14 +56,19 @@ class MainActivity : AppCompatActivity() {
         txtName.text = name
         txtEmail.text = email
 
-        // Logout button click event
+         //Logout button click event
         btnLogout.setOnClickListener{
-                logoutUser()
+            logoutUser()
         }
 
+        //Logout button click event
+        btnNotices.setOnClickListener{
+            val intent = Intent(this, NoticeActivity::class.java)
+            startActivity(intent)
 
-
+        }
     }
+
 
     /**
      * Logging out the user. Will set isLoggedIn flag to false in shared

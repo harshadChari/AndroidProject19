@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StudentLife_01</string>
+    <string name="app_name">StudentLife</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="hint_name">Fullname</string>
@@ -9,5 +9,21 @@
     <string name="btn_link_to_login">Already registred! Login Me.</string>
     <string name="welcome">Welcome</string>
     <string name="btn_logout">LOGOUT</string>
+    <string name="btn_notices">Notices</string>
+
     <string name="name">Fullname</string>
+    <string name="title_activity_main_nav">MainNavActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">StudentLife</string>
+    <string name="nav_header_subtitle">Welcome !</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_semester">Semester</string>
+    <string name="menu_timetable">Timetable</string>
+    <string name="menu_subjects">Subjects</string>
+    <string name="menu_attendance">Attendance</string>
+    <string name="menu_notices">Notices</string>
 </resources>
