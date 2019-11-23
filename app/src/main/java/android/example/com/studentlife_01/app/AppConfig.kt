@@ -44,6 +44,13 @@ object AppConfig {
 
 
 
+    //get semester
+    val URL_CREATE_SEMESTER = "http://192.168.43.19///studentlife_api/api/semesters/create.php"
+
+    // get notices
+    val URL_GET_ALL_SEMESTERS = "http://192.168.43.19//studentlife_api/api/semesters/readby_user_id.php?user_id="
+
+
 
 
 }
