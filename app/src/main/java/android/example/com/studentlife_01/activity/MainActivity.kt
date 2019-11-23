@@ -8,14 +8,17 @@ import android.widget.TextView
 import android.widget.Button
 import android.content.Intent
 import android.example.com.studentlife_01.helper.SQLiteHandler
+import androidx.cardview.widget.CardView
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var txtName: TextView
     private lateinit var txtEmail: TextView
-    private lateinit var btnLogout: Button
-    private lateinit var btnNotices: Button
+    private lateinit var btnLogout: CardView
+    private lateinit var btnNotices: CardView
+    private lateinit var btnBase: CardView
+
 
 
     private var session: SessionManager? = null
@@ -25,14 +28,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-//
-
         txtName =findViewById(R.id.name)
         txtEmail = findViewById(R.id.email)
-        btnLogout =  findViewById(R.id.btnLogout)
-        btnNotices =  findViewById(R.id.btnNotices)
+        btnLogout =  findViewById(R.id.logout)
+        btnNotices =  findViewById(R.id.notices)
+        btnBase =  findViewById(R.id.base)
+
 
 
         // Session manager
@@ -61,12 +62,13 @@ class MainActivity : AppCompatActivity() {
             logoutUser()
         }
 
-        //Logout button click event
-        btnNotices.setOnClickListener{
-            val intent = Intent(this, NoticeActivity::class.java)
+        btnBase.setOnClickListener{
+            val intent = Intent(this, NoticeGroupsActivity::class.java)
             startActivity(intent)
 
         }
+
+
     }
 
 

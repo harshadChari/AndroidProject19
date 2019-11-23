@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import android.content.Intent
 import android.example.com.studentlife_01.app.AppConfig
+import android.example.com.studentlife_01.app.CustomVolleyRequest
 import android.example.com.studentlife_01.app.VolleySingleton
 import android.example.com.studentlife_01.helper.SQLiteHandler
 import android.example.com.studentlife_01.helper.SessionManager
@@ -162,6 +163,9 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         //adding request to queue
-        VolleySingleton.instance?.addToRequestQueue(stringRequest)
+       // VolleySingleton.instance?.addToRequestQueue(stringRequest)
+        val cvr = CustomVolleyRequest(this)
+        cvr.addToRequestQueue(stringRequest)
+        //CustomVolleyRequest.customVolleyRequest?.getInstance(this)?.addToRequestQueue(stringRequest)
     }//--registerUser
 }

@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.Button
 import android.widget.Toast
 import android.example.com.studentlife_01.app.AppConfig
+import android.example.com.studentlife_01.app.CustomVolleyRequest
 import android.example.com.studentlife_01.app.VolleySingleton
 import android.util.Log
 import com.android.volley.AuthFailureError
@@ -142,7 +143,10 @@ class LoginActivity : AppCompatActivity() {
         }
 
         //adding request to queue
-        VolleySingleton.instance?.addToRequestQueue(stringRequest)
+        //VolleySingleton.instance?.addToRequestQueue(stringRequest)
+        val cvr = CustomVolleyRequest(this)
+        cvr.addToRequestQueue(stringRequest)
+        //CustomVolleyRequest.customVolleyRequest?.getInstance(this)?.addToRequestQueue(stringRequest)
 
     }//--checkLogin
 

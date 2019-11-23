@@ -3,7 +3,8 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp">
 
     <!-- A CardView that contains a TextView -->
     <androidx.cardview.widget.CardView
@@ -13,39 +14,54 @@
         android:layout_height="wrap_content"
         card_view:cardCornerRadius="4dp"
         card_view:cardUseCompatPadding="true"
+        android:padding="10dp"
+
+
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvNoticeTitle"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lineSpacingExtra="8sp"
-                android:text="text "
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textSize="26sp"
-                android:textStyle="bold" />
+                android:orientation="vertical"
+                android:padding="16dp">
+                <com.android.volley.toolbox.NetworkImageView
+                    android:id="@+id/volleyImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:src="@drawable/ic_menu_gallery"
+                    android:visibility="gone"
+                    />
+                <TextView
+                    android:id="@+id/tvNoticeTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Title"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/tv_NoticeContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Content"
+                    android:textColor="#555" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_NoticeContent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="content....."
-                android:textSize="18sp" />
-            <Button
-                android:id="@+id/btn_delete"
-                android:layout_gravity="right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="X"
-                android:background="#DA7070"
-                android:textColor="#FFFFFF"
-                android:textSize="25sp"
-                />
+
+                <Button
+                    android:id="@+id/btn_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                  android:text="Delete"
+                    android:theme="@style/PrimaryFlatButton" />
+            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

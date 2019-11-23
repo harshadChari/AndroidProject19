@@ -1,14 +1,15 @@
 package android.example.com.studentlife_01.activity
 
-import android.content.Intent
+
 import android.example.com.studentlife_01.R
 import android.example.com.studentlife_01.app.AppConfig
+import android.example.com.studentlife_01.app.CustomVolleyRequest
 import android.example.com.studentlife_01.app.VolleySingleton
 import android.example.com.studentlife_01.helper.ChapterAdapter
 import android.example.com.studentlife_01.helper.NoticeDialog
 import android.example.com.studentlife_01.helper.SQLiteHandler
 import android.example.com.studentlife_01.model.Notice
-import android.example.com.studentlife_01.model.User
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,7 +23,7 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import kotlinx.android.synthetic.main.activity_notice.*
-import org.json.JSONArray
+
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -30,40 +31,20 @@ class NoticeActivity : AppCompatActivity(), NoticeDialog.NoticeDialogListener {
 
     val noticeList: ArrayList<Notice> = ArrayList()
     lateinit var dialogBuilder: NoticeDialog
-
     private lateinit var layoutManager: RecyclerView.LayoutManager
-
     private var db: SQLiteHandler? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notice)
-supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // SQLite database handler
         db = SQLiteHandler(applicationContext,null)
-//        noticeList.add(
-//        Notice(
-//            "Android MVP Introduction",
-//            "Mauris arcu ipsum, molestie ac porttitor at, faucibus sit amet sapien. Proin quam lacus, blandit nec ultricies et, commodo nec nunc."
-//        )
-//        )
-//        noticeList.add(
-//            Notice(
-//                "Learn RxJava",
-//                "Donec et mi viverra, lobortis neque sed, congue erat. Aliquam in malesuada nulla, et tristique sem. Fusce tincidunt erat libero,"
-//            )
-//        )
-//        noticeList.add(
-//            Notice(
-//                "Advance Kotlin",
-//                "sit arcu nulla mollis nibh, ut tincidunt nibh nunc in eros. Duis blandit consectetur eros non pellentesque. Curabitur in laoreet ipsum"
-//            )
-//        )
+//
         layoutManager = LinearLayoutManager(this)
-        rvChapterList.layoutManager = layoutManager
-        rvChapterList.adapter = ChapterAdapter( noticeList)
+        rvNoticeList.layoutManager = layoutManager
+        rvNoticeList.adapter = ChapterAdapter(this, noticeList)
 
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
@@ -74,6 +55,15 @@ supportActionBar?.setDisplayHomeAsUpEnabled(true)
         getNotices()
 
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    override fun getPermissions(dialog: NoticeDialog) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     fun newDialog() {
@@ -110,7 +100,7 @@ supportActionBar?.setDisplayHomeAsUpEnabled(true)
                         notice.id = obj.getString("id")
                         noticeList.add(notice)
                         Log.d("myerrorTags",noticeList.toString())
-                        rvChapterList.adapter?.notifyDataSetChanged()
+                        rvNoticeList.adapter?.notifyDataSetChanged()
                     } else {
                         // Error occurred in registration. Get the error
                         // message
@@ -140,9 +130,11 @@ supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 return params
             }
         }
-
         //adding request to queue
-        VolleySingleton.instance?.addToRequestQueue(stringRequest)
+        //VolleySingleton.instance?.addToRequestQueue
+        val cvr = CustomVolleyRequest(this)
+        cvr.addToRequestQueue(stringRequest)
+        ///CustomVolleyRequest.customVolleyRequest?.getInstance(this)?.addToRequestQueue(stringRequest)
 
     }
 
@@ -175,7 +167,7 @@ supportActionBar?.setDisplayHomeAsUpEnabled(true)
                             noticeList.add(notice)
                             Log.d("myerrorTags", i.toString());
                         }
-                        rvChapterList.adapter?.notifyDataSetChanged()
+                        rvNoticeList.adapter?.notifyDataSetChanged()
 
 
                     } else {
@@ -198,8 +190,10 @@ supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 return params
             }
         }
-
         //adding request to queue
-        VolleySingleton.instance?.addToRequestQueue(stringRequest)
+        //VolleySingleton.instance?.addToRequestQueue(stringRequest)
+        val cvr = CustomVolleyRequest(this)
+        cvr.addToRequestQueue(stringRequest)
+        //CustomVolleyRequest.customVolleyRequest?.getInstance(this)?.addToRequestQueue(stringRequest)
     }
 }

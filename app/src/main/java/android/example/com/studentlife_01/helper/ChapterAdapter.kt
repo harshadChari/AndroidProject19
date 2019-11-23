@@ -1,7 +1,9 @@
 package android.example.com.studentlife_01.helper
 
+import android.content.Context
 import android.example.com.studentlife_01.R
 import android.example.com.studentlife_01.app.AppConfig
+import android.example.com.studentlife_01.app.CustomVolleyRequest
 import android.example.com.studentlife_01.app.VolleySingleton
 import android.example.com.studentlife_01.model.Notice
 import android.util.Log
@@ -9,20 +11,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.VolleyError
+import com.android.volley.toolbox.ImageLoader
 import com.android.volley.toolbox.StringRequest
-import kotlinx.android.synthetic.main.activity_notice.*
 import kotlinx.android.synthetic.main.fragment_notice_item_layout.view.*
 import org.json.JSONException
 import org.json.JSONObject
+import com.android.volley.toolbox.NetworkImageView
 
 
-class ChapterAdapter( private val noticeList: ArrayList<Notice>) : RecyclerView.Adapter<ChapterAdapter.ViewHolder>() {
 
+
+class ChapterAdapter(context: Context, private val noticeList: ArrayList<Notice>) : RecyclerView.Adapter<ChapterAdapter.ViewHolder>() {
+val context:Context = context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(
@@ -49,6 +53,37 @@ class ChapterAdapter( private val noticeList: ArrayList<Notice>) : RecyclerView.
             notifyItemRemoved(position)
         }
 
+        //NetworkImageView
+        val networkImageView = holder.itemView.findViewById<NetworkImageView>(R.id.volleyImageView)
+        if(noticeList.get(position).document_path!="null")
+            networkImageView.visibility = View.VISIBLE
+        val cvr = CustomVolleyRequest(context)
+
+        val imageLoader =  cvr.getImageLoader()
+
+
+        //val imageLoader = CustomVolleyRequest.customVolleyRequest?.getInstance(context)?.getImageLoader()
+        Log.d("myinfotags","path:" + noticeList.get(position).document_path)
+        val il = ImageLoader.getImageListener(networkImageView,R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert)
+        imageLoader.get(noticeList.get(position).document_path, object : ImageLoader.ImageListener {
+            override fun onErrorResponse(error: VolleyError) {
+                //an error ocurred
+                Log.d("myerrortags","Image error: " + error.toString())
+                networkImageView.setImageResource(android.R.drawable.ic_dialog_alert)
+            }
+
+            override fun onResponse(response: ImageLoader.ImageContainer, isImmediate: Boolean) {
+                if (response.bitmap != null) {
+
+                } else {
+
+                }
+            }
+        })
+        //imageLoader?.get(noticeList.get(position).document_path, il)
+
+        //Setting the image url to load
+       networkImageView.setImageUrl(noticeList.get(position).document_path,imageLoader)
     }
 
     fun deleteNotice(position:Int){
@@ -64,7 +99,7 @@ class ChapterAdapter( private val noticeList: ArrayList<Notice>) : RecyclerView.
                     val obj = JSONObject(response)
                     val error = obj.getBoolean("error")
 
-                    if(error==false){
+                    if(error!=false){
                         Log.d("myerrorTags", obj.getJSONArray("notices").toString());
                         //---- Success
 
@@ -92,7 +127,9 @@ class ChapterAdapter( private val noticeList: ArrayList<Notice>) : RecyclerView.
         }
 
         //adding request to queue
-        VolleySingleton.instance?.addToRequestQueue(stringRequest)
+      // VolleySingleton.instance?.addToRequestQueue(stringRequest)
+        val cvr = CustomVolleyRequest(context)
+        cvr.addToRequestQueue(stringRequest)
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

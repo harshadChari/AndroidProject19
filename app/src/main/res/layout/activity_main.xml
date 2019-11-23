@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
 
     <LinearLayout
+        android:id="@+id/lL_main"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:gravity="center"
@@ -18,7 +19,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/welcome"
-            android:textSize="20dp" />
+            android:textSize="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"/>
 
         <TextView
             android:id="@+id/name"
@@ -26,7 +29,9 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="24dp" />
+            android:text="name"
+            android:layout_marginTop="10dp"
+            android:textSize="25dp" />
 
         <TextView
             android:id="@+id/email"
@@ -34,26 +39,342 @@
             android:layout_height="wrap_content"
             android:textSize="13dp" />
 
-        <Button
-            android:id="@+id/btnNotices"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
-            android:background="@color/bg_main"
-            android:text="@string/btn_notices"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15dp" />
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
-            android:background="@color/btn_logut_bg"
-            android:text="@string/btn_logout"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15dp" />
     </LinearLayout>
+
+    <GridLayout
+        android:id="@+id/gL_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lL_main"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:rowCount="3">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/base"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="16dp"
+            android:background="#AAAAAA"
+            app:cardBackgroundColor="#ffffff"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_notices" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Notices"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/logout"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="15dp"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_logout" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Logout"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/notices"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="15dp"
+            app:cardBackgroundColor="@android:color/tertiary_text_light"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_menu_camera" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Menu Item 3"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/logout2"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@android:color/tertiary_text_light"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_menu_camera" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Menu Item 4"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/notices5"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@android:color/tertiary_text_light"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_menu_camera" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Menu Item 5"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/logout5"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardBackgroundColor="@android:color/tertiary_text_light"
+            android:layout_marginBottom="16dp"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_menu_camera" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Menu Item 6"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/notices3"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@android:color/tertiary_text_light"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_menu_camera" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Menu Item 7"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/logout3"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardBackgroundColor="@android:color/tertiary_text_light"
+            android:layout_marginBottom="16dp"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_menu_camera" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Menu Item 8"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </GridLayout>
+
 
 </RelativeLayout>
