@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         btnBase =  findViewById(R.id.base)
 
 
-
         // Session manager
         session = SessionManager(applicationContext)
         // SQLite database handler
